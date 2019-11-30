@@ -1,0 +1,35 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    cloudsearch:
+        hostname: cloudsearch
+        image: ${arisDockerRegistry}softwareag/aris-cloudsearch:${version}
+        ports:
+            - "8099:8099"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - cloudsearch-data:/data
+            - cloudsearch-log:/logs
+            - cloudsearch-aris-zkc:/zkc
+
+volumes:
+    cloudsearch-data:
+      labels:
+        com.softwareag.volume.type: "data"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    cloudsearch-log:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    cloudsearch-aris-zkc:
+      labels:
+        com.softwareag.volume.type: "config"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

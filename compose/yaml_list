@@ -1,0 +1,5 @@
+#docker-compose zoo,elastic,umcadmin,pg,cs,abs,cop,ecp,adsadmin,octo,simu,accserver,apg,dashboarding,lb connect_full2
+#docker-compose_connect_arcm zoo,elastic,umcadmin,pg,cs,abs,cop,ecp,adsadmin,octo,simu,accserver,apg,dashboarding,lb connect_full2
+#docker-compose_connect_cdf_hds zoo,elastic,umcadmin,pg,cs,abs,cop,ecp,adsadmin,octo,simu,accserver,apg,dashboarding,lb,cdf,hds connect_full2
+#docker-compose zoo,elastic,umcadmin,pg,cs,api,kibana,cop,ecp,adsadmin,octo,simu,accserver,lb apiportal2
+docker-compose zoo,elastic,umcadmin,pg,cs,apiportalbundle,kibana,cop,ecp,adsadmin,octo,simu,accserver,lb apiportal2

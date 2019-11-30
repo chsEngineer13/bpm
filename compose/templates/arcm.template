@@ -1,0 +1,24 @@
+version: '3'
+
+services:
+    arcm:
+        hostname: arcm
+        image: ${arisDockerRegistry}softwareag/aris-arcm:${version}
+        ports:
+            - "14510:8080"
+            - "14511:8009"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - arcm-logs:/logs
+            - ${enhancementspath}:/autoenhancements
+
+volumes:
+    arcm-logs:
+        labels:
+          com.softwareag.volume.type: "log"
+          com.softwareag.version: ${version}
+          com.softwareag.build: ${build}

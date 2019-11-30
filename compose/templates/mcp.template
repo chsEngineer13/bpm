@@ -1,0 +1,28 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    mcp-db:
+        hostname: mcp-db
+        image: ${arisDockerRegistry}softwareag/aris-mcp-db:${version}
+        networks:
+            - "arisnet"
+        environment:
+            MYSQL_ROOT_PASSWORD: mEaPfP62QVXMhcuC
+            MYSQL_DATABASE: drupal
+        volumes:
+            - mcp-db-data:/var/lib/mysql
+    mcp:
+        hostname: mcp
+        image: ${arisDockerRegistry}softwareag/aris-mcp:${version}
+        ports:
+            - "8888:80"
+        networks:
+            - "arisnet"
+
+volumes:
+    mcp-db-data:
+      labels:
+        com.softwareag.volume.type: "data"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

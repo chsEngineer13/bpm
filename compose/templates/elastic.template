@@ -1,0 +1,36 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    elastic:
+        hostname: elastic
+        image: ${arisDockerRegistry}softwareag/aris-elastic:${version}
+        ports:
+            - "14220:14220"
+            - "14230:14230"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - elastic-data:/elasticsearch/data
+            - elastic-aris-zkc:/aris/zkc
+            - elastic-logs:/logs
+
+volumes:
+    elastic-data:
+      labels:
+        com.softwareag.volume.type: "data"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    elastic-aris-zkc:
+      labels:
+        com.softwareag.volume.type: "config"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    elastic-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

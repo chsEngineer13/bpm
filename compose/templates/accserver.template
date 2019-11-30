@@ -1,0 +1,21 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    accserver:
+        hostname: accserver
+        image: ${arisDockerRegistry}softwareag/aris-accserver:${version}
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - accserver-logs:/logs
+
+volumes:
+    accserver-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

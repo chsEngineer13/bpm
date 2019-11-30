@@ -1,0 +1,6 @@
+version: '3'
+
+services:
+    collaboration:
+        environment:
+            - ecp_env_platform_name=WEB_METHODS_API_PORTAL_RL

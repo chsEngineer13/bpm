@@ -1,0 +1,61 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    processengine:
+        hostname: processengine
+        image: ${arisDockerRegistry}softwareag/aris-processengine:${version}
+        ports:
+            - "10088:8080"
+            - "11088:8009"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - processengine-logs:/logs
+            - ${enhancementspath}:/autoenhancements
+    processboard:
+        hostname: processboard
+        image: ${arisDockerRegistry}softwareag/aris-processboard:${version}
+        ports:
+            - "10089:8080"
+            - "11089:8009"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - processboard-logs:/logs
+    serviceenabling:
+        hostname: serviceenabling
+        image: ${arisDockerRegistry}softwareag/aris-serviceenabling:${version}
+        ports:
+            - "10090:8080"
+            - "11090:8009"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - serviceenabling-logs:/logs
+
+volumes:
+    processengine-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    processboard-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    serviceenabling-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

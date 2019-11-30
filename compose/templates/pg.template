@@ -1,0 +1,42 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    postgres:
+        hostname: postgres
+        image: ${arisDockerRegistry}softwareag/aris-postgres:${version}
+        ports:
+            - "5432:5432"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - postgres-data:/var/lib/postgresql/data
+            - postgres-log:/var/log/postgresql
+            - postgres-aris-zkc:/aris/zkc
+            - postgres-logs:/logs
+
+
+volumes:
+    postgres-data:
+      labels:
+        com.softwareag.volume.type: "data"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    postgres-log:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    postgres-aris-zkc:
+      labels:
+        com.softwareag.volume.type: "config"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    postgres-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

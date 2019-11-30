@@ -1,0 +1,25 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    collaboration:
+        hostname: collaboration
+        image: ${arisDockerRegistry}softwareag/aris-collaboration:${version}
+        ports:
+            - "10083:8080"
+            - "11083:8009"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - collaboration-logs:/logs
+            - ${enhancementspath}:/autoenhancements
+
+volumes:
+    collaboration-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

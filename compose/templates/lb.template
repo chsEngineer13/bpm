@@ -1,0 +1,32 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    loadbalancer:
+        hostname: loadbalancer
+        image: ${arisDockerRegistry}softwareag/aris-loadbalancer:${version}
+        ports:
+            - "80:80"
+            - "443:443"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - HTTPD_servername=${HOSTNAME}
+            - REDIRECT_LOGFILES
+        volumes:
+            - loadbalancer-logs:/logs
+            - loadbalancer-custom-config:/usr/local/apache2/conf/custom/
+            - ${enhancementspath}:/autoenhancements
+
+volumes:
+    loadbalancer-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    loadbalancer-custom-config:
+      labels:
+        com.softwareag.volume.type: "config"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

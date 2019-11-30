@@ -1,0 +1,26 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    cdf:
+        hostname: cdf
+        image: ${arisDockerRegistry}softwareag/aris-cdf:${version}
+        ports:
+            - "14450:8080"
+            - "14451:8009"
+            - "14456:9600"
+            - "14457:9700"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - cdf-logs:/logs
+
+volumes:
+    cdf-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

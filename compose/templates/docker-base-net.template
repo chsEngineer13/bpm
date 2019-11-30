@@ -1,0 +1,6 @@
+version: '3'
+
+networks:
+#use a pre-created(!) network named arisnet (this should allow us to use multiple compose files, shouldn't it?)
+    arisnet:
+

@@ -1,0 +1,23 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+
+services:
+    kibana:
+        hostname: kibana
+        image: ${arisDockerRegistry}softwareag/aris-kibana:${version}
+        networks:
+            - "arisnet"
+#        depends_on:
+#            - elastic
+        environment:
+            - zookeeper_connect_string
+        volumes:
+            - kibana-logs:/logs
+
+volumes:
+    kibana-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

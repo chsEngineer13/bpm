@@ -1,0 +1,31 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    adsadmin:
+        hostname: adsadmin
+        image: ${arisDockerRegistry}softwareag/aris-adsadmin:${version}
+        ports:
+            - "10084:8080"
+            - "11084:8009"
+        networks:
+            - "arisnet"
+        environment:
+            - zookeeper_connect_string
+            - REDIRECT_LOGFILES
+        volumes:
+            - adsadmin-logs:/logs
+            - adsadmin-data:/data
+            - ${enhancementspath}:/autoenhancements
+
+volumes:
+    adsadmin-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    adsadmin-data:
+      labels:
+        com.softwareag.volume.type: "data"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

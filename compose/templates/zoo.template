@@ -1,0 +1,33 @@
+version: '3'
+#for local build just delete the repository part in the image tag,  before submit it has to be reverted from image: aris/ image: nexusaris:18083/aris/ again
+
+services:
+    zookeeper:
+        hostname: zookeeper
+        image: ${arisDockerRegistry}softwareag/aris-zookeeper:${version}
+        environment:
+            - REDIRECT_LOGFILES
+        ports:
+            - "14281:14281"
+        networks:
+            - "arisnet"
+        volumes:
+            - zookeeper-data:/zookeeper_data
+            - zookeeper-logs:/zookeeper_logs
+#        deploy:
+#            restart_policy:
+#                condition: on-failure
+#                delay: 5s
+#                max_attempts: 3
+
+volumes:
+    zookeeper-data:
+      labels:
+        com.softwareag.volume.type: "data"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}
+    zookeeper-logs:
+      labels:
+        com.softwareag.volume.type: "log"
+        com.softwareag.version: ${version}
+        com.softwareag.build: ${build}

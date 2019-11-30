@@ -1,0 +1,5 @@
+connect_full zoo,elastic,umcadmin,pg,cs,abs,cop,ecp,adsadmin,simu,octo,accserver,apg,dashboarding,lb
+connect_full_arcm zoo,elastic,umcadmin,pg,cs,abs,cop,ecp,adsadmin,simu,octo,accserver,apg,dashboarding,lb,arcm
+connect_full_cdf_hds zoo,elastic,umcadmin,pg,cs,abs,cop,ecp,adsadmin,simu,octo,accserver,apg,dashboarding,lb,cdf,hds
+connect_full_arcm_cdf_hds zoo,elastic,umcadmin,pg,cs,abs,cop,ecp,adsadmin,simu,octo,accserver,apg,dashboarding,lb,cdf,hds,arcm
+api zoo,elastic,umcadmin,pg,cs,api,kibana,cop,ecp,adsadmin,octo,accserver,lb
