@@ -1,0 +1,406 @@
+networks:
+  arisnet: {}
+services:
+  abs:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: abs
+    image: store/softwareag/aris-abs:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11081:8009/tcp
+    - 10081:8080/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - abs-logs:/logs:rw
+  accserver:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: accserver
+    image: store/softwareag/aris-accserver:10.0.10.0
+    networks:
+      arisnet: null
+    volumes:
+    - accserver-logs:/logs:rw
+  adsadmin:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: adsadmin
+    image: store/softwareag/aris-adsadmin:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11084:8009/tcp
+    - 10084:8080/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - adsadmin-data:/data:rw
+    - adsadmin-logs:/logs:rw
+  arcm:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: arcm
+    image: store/softwareag/aris-arcm:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 14511:8009/tcp
+    - 14510:8080/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - arcm-logs:/logs:rw
+  cloudsearch:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: cloudsearch
+    image: store/softwareag/aris-cloudsearch:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 8099:8099/tcp
+    volumes:
+    - cloudsearch-data:/data:rw
+    - cloudsearch-log:/logs:rw
+    - cloudsearch-aris-zkc:/zkc:rw
+  collaboration:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: collaboration
+    image: store/softwareag/aris-collaboration:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11083:8009/tcp
+    - 10083:8080/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - collaboration-logs:/logs:rw
+  dashboarding:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: dashboarding
+    image: store/softwareag/aris-dashboarding:10.0.10.0
+    networks:
+      arisnet: null
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - dashboarding-logs:/logs:rw
+  elastic:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: elastic
+    image: store/softwareag/aris-elastic:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 14220:14220/tcp
+    - 14230:14230/tcp
+    volumes:
+    - elastic-aris-zkc:/aris/zkc:rw
+    - elastic-data:/elasticsearch/data:rw
+    - elastic-logs:/logs:rw
+  loadbalancer:
+    environment:
+      HTTPD_servername: localhost.localdomain
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: loadbalancer
+    image: store/softwareag/aris-loadbalancer:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 80:80/tcp
+    - 443:443/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - loadbalancer-logs:/logs:rw
+    - loadbalancer-custom-config:/usr/local/apache2/conf/custom:rw
+  octopus:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: octopus
+    image: store/softwareag/aris-octopus:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11085:8009/tcp
+    - 10085:8080/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - octopus-logs:/logs:rw
+  portalserver:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: portalserver
+    image: store/softwareag/aris-portalserver:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11082:8009/tcp
+    - 10082:8080/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - portalserver-logs:/logs:rw
+  postgres:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: postgres
+    image: store/softwareag/aris-postgres:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 5432:5432/tcp
+    volumes:
+    - postgres-aris-zkc:/aris/zkc:rw
+    - postgres-logs:/logs:rw
+    - postgres-data:/var/lib/postgresql/data:rw
+    - postgres-log:/var/log/postgresql:rw
+  processboard:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: processboard
+    image: store/softwareag/aris-processboard:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11089:8009/tcp
+    - 10089:8080/tcp
+    volumes:
+    - processboard-logs:/logs:rw
+  processengine:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: processengine
+    image: store/softwareag/aris-processengine:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11088:8009/tcp
+    - 10088:8080/tcp
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - processengine-logs:/logs:rw
+  serviceenabling:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: serviceenabling
+    image: store/softwareag/aris-serviceenabling:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11090:8009/tcp
+    - 10090:8080/tcp
+    volumes:
+    - serviceenabling-logs:/logs:rw
+  simulation:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: simulation
+    image: store/softwareag/aris-simulation:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11086:8009/tcp
+    - 10086:8080/tcp
+    volumes:
+    - simulation-logs:/logs:rw
+  tm:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: tm
+    image: store/softwareag/aris-tm:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 11087:8009/tcp
+    - 10087:8080/tcp
+    volumes:
+    - tm-logs:/logs:rw
+  umcadmin:
+    environment:
+      REDIRECT_LOGFILES: "false"
+      zookeeper_connect_string: zookeeper:14281
+    hostname: umcadmin
+    image: store/softwareag/aris-umcadmin:10.0.10.0
+    networks:
+      arisnet: null
+    volumes:
+    - /home/kpodres/aris/enhancements:/autoenhancements:rw
+    - umcadmin-logs:/logs:rw
+  zookeeper:
+    environment:
+      REDIRECT_LOGFILES: "false"
+    hostname: zookeeper
+    image: store/softwareag/aris-zookeeper:10.0.10.0
+    networks:
+      arisnet: null
+    ports:
+    - 14281:14281/tcp
+    volumes:
+    - zookeeper-data:/zookeeper_data:rw
+    - zookeeper-logs:/zookeeper_logs:rw
+version: '3.0'
+volumes:
+  abs-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  accserver-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  adsadmin-data:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: data
+  adsadmin-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  arcm-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  cloudsearch-aris-zkc:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: config
+  cloudsearch-data:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: data
+  cloudsearch-log:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  collaboration-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  dashboarding-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  elastic-aris-zkc:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: config
+  elastic-data:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: data
+  elastic-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  loadbalancer-custom-config:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: config
+  loadbalancer-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  octopus-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  portalserver-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  postgres-aris-zkc:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: config
+  postgres-data:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: data
+  postgres-log:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  postgres-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  processboard-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  processengine-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  serviceenabling-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  simulation-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  tm-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  umcadmin-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+  zookeeper-data:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: data
+  zookeeper-logs:
+    labels:
+      com.softwareag.build: 10.0.10.0.1325363
+      com.softwareag.version: 10.0.10.0
+      com.softwareag.volume.type: log
+

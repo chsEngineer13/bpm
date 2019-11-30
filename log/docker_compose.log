@@ -1,0 +1,130 @@
+Setup runs with environment variables set as:
+arisDockerRegistry 	store/
+arisDockerLogPath 	/home/kpodres/aris/log
+arisDockerComposeLog 	/home/kpodres/aris/log/docker_compose.log
++++++++ refresh ARIS Docker +++++++
++++++ Start aris docker refresh +++++
+++++++ create compose ++++++
+Сб ноя 30 02:58:48 EST 2019
+Version: 10.0.10.0
+Codeline: //ALL/rel/10.0/10.0.10
+Installing product ARIS Connect
+Standard database system (Postgres) will be installed
+Product ARCM will be installed as add-on
+All docker volume will remain with existing data.
+zoo,elastic,cs,umcadmin,adsadmin,accserver,lb,abs,apg,dashboarding,octo,cop,ecp,simu,arcm,pg
+ARIS connect server, with arcm addon, with internal DB
+Create compose file for ARIS connect server, with arcm addon, with internal DB
+with createCompose.sh docker-compose zoo,elastic,cs,umcadmin,adsadmin,accserver,lb,abs,apg,dashboarding,octo,cop,ecp,simu,arcm,pg /home/kpodres/aris
+Target yaml file /home/kpodres/aris/docker-compose.yml
+Adding template file /home/kpodres/aris/compose/templates/zoo.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/elastic.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/cs.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/umcadmin.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/adsadmin.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/accserver.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/lb.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/abs.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/apg.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/dashboarding.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/octo.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/cop.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/ecp.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/simu.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/arcm.template to yaml file
+Adding template file /home/kpodres/aris/compose/templates/pg.template to yaml file
+docker-compose -f /home/kpodres/aris/compose/templates/docker-base-net.template -f /home/kpodres/aris/compose/templates/zoo.template -f /home/kpodres/aris/compose/templates/elastic.template -f /home/kpodres/aris/compose/templates/cs.template -f /home/kpodres/aris/compose/templates/umcadmin.template -f /home/kpodres/aris/compose/templates/adsadmin.template -f /home/kpodres/aris/compose/templates/accserver.template -f /home/kpodres/aris/compose/templates/lb.template -f /home/kpodres/aris/compose/templates/abs.template -f /home/kpodres/aris/compose/templates/apg.template -f /home/kpodres/aris/compose/templates/dashboarding.template -f /home/kpodres/aris/compose/templates/octo.template -f /home/kpodres/aris/compose/templates/cop.template -f /home/kpodres/aris/compose/templates/ecp.template -f /home/kpodres/aris/compose/templates/simu.template -f /home/kpodres/aris/compose/templates/arcm.template -f /home/kpodres/aris/compose/templates/pg.template config > /home/kpodres/aris/docker-compose.yml
+The yaml file /home/kpodres/aris/docker-compose.yml has been created
+++++ start: clean system
+Сб ноя 30 02:58:50 EST 2019
+++++ start: docker-compose -p connect -f docker-compose.yml down --rmi all ++++
+Сб ноя 30 02:58:50 EST 2019
+Removing network connect_arisnet
+Network connect_arisnet not found.
+Removing image store/softwareag/aris-abs:10.0.10.0
+Failed to remove image for service abs: 404 Client Error: Not Found ("No such image: store/softwareag/aris-abs:10.0.10.0")
+Removing image store/softwareag/aris-accserver:10.0.10.0
+Failed to remove image for service accserver: 404 Client Error: Not Found ("No such image: store/softwareag/aris-accserver:10.0.10.0")
+Removing image store/softwareag/aris-adsadmin:10.0.10.0
+Failed to remove image for service adsadmin: 404 Client Error: Not Found ("No such image: store/softwareag/aris-adsadmin:10.0.10.0")
+Removing image store/softwareag/aris-arcm:10.0.10.0
+Failed to remove image for service arcm: 404 Client Error: Not Found ("No such image: store/softwareag/aris-arcm:10.0.10.0")
+Removing image store/softwareag/aris-cloudsearch:10.0.10.0
+Failed to remove image for service cloudsearch: 404 Client Error: Not Found ("No such image: store/softwareag/aris-cloudsearch:10.0.10.0")
+Removing image store/softwareag/aris-collaboration:10.0.10.0
+Failed to remove image for service collaboration: 404 Client Error: Not Found ("No such image: store/softwareag/aris-collaboration:10.0.10.0")
+Removing image store/softwareag/aris-dashboarding:10.0.10.0
+Failed to remove image for service dashboarding: 404 Client Error: Not Found ("No such image: store/softwareag/aris-dashboarding:10.0.10.0")
+Removing image store/softwareag/aris-elastic:10.0.10.0
+Failed to remove image for service elastic: 404 Client Error: Not Found ("No such image: store/softwareag/aris-elastic:10.0.10.0")
+Removing image store/softwareag/aris-loadbalancer:10.0.10.0
+Failed to remove image for service loadbalancer: 404 Client Error: Not Found ("No such image: store/softwareag/aris-loadbalancer:10.0.10.0")
+Removing image store/softwareag/aris-octopus:10.0.10.0
+Failed to remove image for service octopus: 404 Client Error: Not Found ("No such image: store/softwareag/aris-octopus:10.0.10.0")
+Removing image store/softwareag/aris-portalserver:10.0.10.0
+Failed to remove image for service portalserver: 404 Client Error: Not Found ("No such image: store/softwareag/aris-portalserver:10.0.10.0")
+Removing image store/softwareag/aris-postgres:10.0.10.0
+Failed to remove image for service postgres: 404 Client Error: Not Found ("No such image: store/softwareag/aris-postgres:10.0.10.0")
+Removing image store/softwareag/aris-processboard:10.0.10.0
+Failed to remove image for service processboard: 404 Client Error: Not Found ("No such image: store/softwareag/aris-processboard:10.0.10.0")
+Removing image store/softwareag/aris-processengine:10.0.10.0
+Failed to remove image for service processengine: 404 Client Error: Not Found ("No such image: store/softwareag/aris-processengine:10.0.10.0")
+Removing image store/softwareag/aris-serviceenabling:10.0.10.0
+Failed to remove image for service serviceenabling: 404 Client Error: Not Found ("No such image: store/softwareag/aris-serviceenabling:10.0.10.0")
+Removing image store/softwareag/aris-simulation:10.0.10.0
+Failed to remove image for service simulation: 404 Client Error: Not Found ("No such image: store/softwareag/aris-simulation:10.0.10.0")
+Removing image store/softwareag/aris-tm:10.0.10.0
+Failed to remove image for service tm: 404 Client Error: Not Found ("No such image: store/softwareag/aris-tm:10.0.10.0")
+Removing image store/softwareag/aris-umcadmin:10.0.10.0
+Failed to remove image for service umcadmin: 404 Client Error: Not Found ("No such image: store/softwareag/aris-umcadmin:10.0.10.0")
+Removing image store/softwareag/aris-zookeeper:10.0.10.0
+Failed to remove image for service zookeeper: 404 Client Error: Not Found ("No such image: store/softwareag/aris-zookeeper:10.0.10.0")
+++++ end: tear down
+Сб ноя 30 02:58:51 EST 2019
+++++ list remaining container, images and volumes +++++
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+REPOSITORY                           TAG                 IMAGE ID            CREATED             SIZE
+store/softwareag/aris-deploy-tools   10.0.10.0           1c4d4ebdc196        2 months ago        34.2MB
+hello-world                          latest              fce289e99eb9        11 months ago       1.84kB
+DRIVER              VOLUME NAME
+++++ end: clean system ++++
+Сб ноя 30 02:58:51 EST 2019
+++++ start: docker-compose -p connect up ++++
+Сб ноя 30 02:58:52 EST 2019
+Creating network "connect_arisnet" with the default driver
+Creating volume "connect_abs-logs" with default driver
+Creating volume "connect_accserver-logs" with default driver
+Creating volume "connect_adsadmin-data" with default driver
+Creating volume "connect_adsadmin-logs" with default driver
+Creating volume "connect_arcm-logs" with default driver
+Creating volume "connect_cloudsearch-aris-zkc" with default driver
+Creating volume "connect_cloudsearch-data" with default driver
+Creating volume "connect_cloudsearch-log" with default driver
+Creating volume "connect_collaboration-logs" with default driver
+Creating volume "connect_dashboarding-logs" with default driver
+Creating volume "connect_elastic-aris-zkc" with default driver
+Creating volume "connect_elastic-data" with default driver
+Creating volume "connect_elastic-logs" with default driver
+Creating volume "connect_loadbalancer-custom-config" with default driver
+Creating volume "connect_loadbalancer-logs" with default driver
+Creating volume "connect_octopus-logs" with default driver
+Creating volume "connect_portalserver-logs" with default driver
+Creating volume "connect_postgres-aris-zkc" with default driver
+Creating volume "connect_postgres-data" with default driver
+Creating volume "connect_postgres-log" with default driver
+Creating volume "connect_postgres-logs" with default driver
+Creating volume "connect_processboard-logs" with default driver
+Creating volume "connect_processengine-logs" with default driver
+Creating volume "connect_serviceenabling-logs" with default driver
+Creating volume "connect_simulation-logs" with default driver
+Creating volume "connect_tm-logs" with default driver
+Creating volume "connect_umcadmin-logs" with default driver
+Creating volume "connect_zookeeper-data" with default driver
+Creating volume "connect_zookeeper-logs" with default driver
+Pulling abs (store/softwareag/aris-abs:10.0.10.0)...
+10.0.10.0: Pulling from store/softwareag/aris-abs
+Attaching to 
+++++ end: docker-compose up
+Сб ноя 30 02:59:09 EST 2019
++++++ End aris docker refresh +++++
++++++++ copy scripts to be used on the host from the admin-tools container +++++++

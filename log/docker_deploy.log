@@ -1,0 +1,4 @@
+Setup runs with environment variables set as:
+arisDockerRegistry 	store/
+arisDockerLogPath 	/home/kpodres/aris/log
+arisDockerComposeLog 	/home/kpodres/aris/log/docker_deploy.log
